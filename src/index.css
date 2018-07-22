@@ -4,7 +4,7 @@ body {
   font-family: Courier,sans-serif;
 }
 
-aside {
+.bloc-chat {
   float: left;
   width: 25%;
   height: 100vh;
@@ -13,7 +13,11 @@ aside {
   padding-left: 20px;
 }
 
-#chat-name {
+.bloc-chat-inactive {
+  background-color: #f3f3f3;
+}
+
+.chat-name {
   text-align: left;
   color: #615f5f;
   padding-bottom: 20px;
@@ -21,11 +25,75 @@ aside {
   font-weight: 900;
 }
 
-#room-list {
+.chat-room-inactive {
+  opacity: 0.2;
 }
 
 .room {
   text-align: left;
   padding-bottom: 10px;
   color: #949090;
+}
+
+.custom-icon {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.new-chat-popup {
+  display: none;
+  z-index: 1;
+  background-color: #e8e8e8;
+  border: 1px black solid;
+  position: fixed;
+  left: 25%;
+  top:70px;
+  text-align: left;
+  padding: 15px;
+  width: 250px;
+}
+
+.new-chat-popup-active {
+  display: block;
+}
+
+.popup-title {
+  color: #615c5c;
+  font-weight: 500;
+  padding-bottom: 15px;
+  font-size: 1.2em;
+}
+
+.popup-subtitle {
+  font-size: 0.9em;
+  color: #a3a3a3;
+  font-weight: 100;
+}
+
+form {
+  width: 100%;
+}
+
+input {
+  border: none;
+  height: 30px;
+  font-size: 0.9em;
+}
+
+.roomNameInput {
+  width: 100%;
+  margin: 5px 0;
+  padding-left: 5px;
+}
+
+.cancelButton {
+  width: 50%;
+  background-color: #f3f3f3;
+  color: #a3a3a3;
+}
+
+.createButton {
+  width: 50%;
+  background-color: #a1a1a1;
+  color: white;
 }
