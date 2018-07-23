@@ -51,7 +51,8 @@ class RoomList extends Component {
     this.setState({ creatingNewRoom: true });
   }
 
-  dismissNewChatPopup() {
+  dismissNewChatPopup(e) {
+    e.preventDefault();
     this.setState({ creatingNewRoom: false });
   }
 
@@ -59,7 +60,8 @@ class RoomList extends Component {
     this.newRoomName = e.target.value;
   }
 
-  createRoom() {
+  createRoom(e) {
+    e.preventDefault();
     if (this.newRoomName && this.newRoomName.length)
       this.roomsRef.push({name: this.newRoomName});
     this.setState({ creatingNewRoom: false });
@@ -83,8 +85,8 @@ class RoomList extends Component {
           <form>
             <div className="popup-subtitle">Enter a Room Name</div>
             <input className="roomNameInput" type="text" name="roomName" onChange={e => this.saveRoomName(e)}/><br />
-            <input className="createButton" type="submit" value="Create Room" onClick={() => this.createRoom()}/>
-            <input className="cancelButton" type="submit" value="Cancel" onClick={() => this.dismissNewChatPopup()}/>
+            <input className="createButton" type="submit" value="Create Room" onClick={e => this.createRoom(e)}/>
+            <input className="cancelButton" type="submit" value="Cancel" onClick={(e) => this.dismissNewChatPopup(e)}/>
           </form>
         </section>
       </aside>
