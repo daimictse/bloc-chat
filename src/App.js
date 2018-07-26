@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import * as firebase from 'firebase';
 import RoomList from './components/RoomList';
+import MessageList from './components/MessageList';
 
 <script src="https://www.gstatic.com/firebasejs/5.2.0/firebase.js"></script>
   // Initialize Firebase
@@ -17,10 +18,30 @@ import RoomList from './components/RoomList';
   firebase.initializeApp(config);
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      activeRoom: ''
+    };
+  }
+
+  onRoomChange = room => {
+    this.setState({ activeRoom: room });
+  }
+
   render() {
     return (
       <div className="App">
-          <RoomList firebase={firebase} />
+          <RoomList
+            firebase={firebase}
+            activeRoom={this.state.activeRoom}
+            onRoomChange={this.onRoomChange}
+          />
+          <MessageList
+            firebase={firebase}
+            activeRoom={this.state.activeRoom}
+            onRoomChange={this.onRoomChange}
+          />
       </div>
     );
   }

@@ -33,6 +33,7 @@ body {
   text-align: left;
   padding-bottom: 10px;
   color: #949090;
+  cursor: pointer;
 }
 
 .custom-icon {
@@ -96,4 +97,15 @@ input {
   width: 50%;
   background-color: #a1a1a1;
   color: white;
+}
+
+.messages {
+  padding-top: 50px;
+  padding-left: 35%;
+  text-align: left;
+}
+
+.room-title {
+  font-size: 1.2em;
+  padding-bottom: 25px;
 }
