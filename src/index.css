@@ -101,11 +101,38 @@ input {
 
 .messages {
   padding-top: 50px;
-  padding-left: 35%;
   text-align: left;
 }
 
 .room-title {
-  font-size: 1.2em;
+  font-size: 1.5em;
   padding-bottom: 25px;
+  padding-left: 35%;
+}
+
+.conversation {
+  font-size: 0.9em;
+}
+
+.message {
+  padding: 20px;
+  padding-left: 35%;
+}
+
+.message:nth-child(odd) {
+    background: #eef5fd;
+}
+
+.message:nth-child(even) {
+}
+
+.message-user {
+  font-weight: bold;
+}
+
+.message-sentAt {
+  float: right;
+  font-style: italic;
+  font-weight: normal;
+  color: #c0c0c0;
 }
