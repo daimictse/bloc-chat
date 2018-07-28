@@ -84,7 +84,7 @@ class RoomList extends Component {
           <div className="popup-title">Create New Room</div>
           <form>
             <div className="popup-subtitle">Enter a Room Name</div>
-            <input className="roomNameInput" type="text" name="roomName" onChange={e => this.saveRoomName(e)}/><br />
+            <input className="popupInput" type="text" name="roomName" onChange={e => this.saveRoomName(e)}/><br />
             <input className="createButton" type="submit" value="Create Room" onClick={e => this.createRoom(e)}/>
             <input className="cancelButton" type="submit" value="Cancel" onClick={(e) => this.dismissNewChatPopup(e)}/>
           </form>

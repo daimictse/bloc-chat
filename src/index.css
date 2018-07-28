@@ -81,7 +81,7 @@ input {
   font-size: 0.9em;
 }
 
-.roomNameInput {
+.popupInput {
   width: 100%;
   margin: 5px 0;
   padding-left: 5px;
@@ -135,4 +135,49 @@ input {
   font-style: italic;
   font-weight: normal;
   color: #c0c0c0;
+}
+
+.authentication {
+  position: fixed;
+  top: 20px;
+  right: 10px;
+}
+
+.user {
+  display: inline;
+  padding-right: 10px;
+  cursor: pointer;
+}
+
+.authentication button {
+  border: none;
+  border-left: 2px solid #ededed;
+  padding-right: 10px;
+  cursor: pointer;
+}
+
+button:focus,
+button:active,
+button:focus:active {
+  outline: 0;
+}
+
+.new-username-popup {
+  display: none;
+  z-index: 1;
+  background-color: #e8e8e8;
+  border: 1px black solid;
+  position: fixed;
+  left: 35%;
+  top:20%;
+  text-align: left;
+  padding: 15px;
+  width: 250px;
+}
+
+.new-username-popup .createButton {
+  width: 100%;
+}
+.new-username-popup-active {
+  display: block;
 }
