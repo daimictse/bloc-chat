@@ -156,6 +156,7 @@ input {
   cursor: pointer;
 }
 
+input,
 button:focus,
 button:active,
 button:focus:active {
@@ -177,7 +178,38 @@ button:focus:active {
 
 .new-username-popup .createButton {
   width: 100%;
+  padding: 10px;
 }
 .new-username-popup-active {
   display: block;
+}
+
+.nextMessage {
+  position: fixed;
+  bottom: -1px;
+  line-height: 20px;
+  padding-left: 30%;
+  width: 100%;
+  font-size: 0.9em;
+  border: 1px solid #e8e8e8;
+  background-color: #f6fafe;
+  z-index: -1;
+}
+
+.theMessage {
+  background-color: inherit;
+  color: gray;
+  width: 70%;
+  padding: 10px 5px;
+}
+
+.sendButton {
+  position: fixed;
+  right: 0px;
+  height: 30px;
+  background-color: #615f5f;
+  color: white;
+  padding: 10px 15px;
+  box-sizing: content-box;
+  cursor: pointer;
 }

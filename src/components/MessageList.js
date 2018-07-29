@@ -4,7 +4,8 @@ class MessageList extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      messages: []
+      messages: [],
+      theMessage: 'hello'
     };
     this.messagesRef = this.props.firebase.database().ref('messages');
   }
@@ -28,6 +29,27 @@ class MessageList extends Component {
     return hr + ':' + m.substr(-2) + " " + apm;
   }
 
+  clearText(e) {
+    this.setState({ theMessage: '' });
+  }
+
+  saveTheMessage (e) {
+    this.setState({ theMessage: e.target.value });
+  }
+
+  createMessage(e) {
+    e.preventDefault();
+    if (this.props.activeRoom) {
+      console.log(this.props.activeUser, this.state.theMessage, this.props.firebase.database.ServerValue.TIMESTAMP, this.props.activeRoom.key);
+      this.messagesRef.push({
+        username: this.props.activeUser,
+        content: this.state.theMessage,
+        sentAt: this.props.firebase.database.ServerValue.TIMESTAMP,
+        roomId: this.props.activeRoom.key
+      });
+    }
+  }
+
   render() {
     return (
       <section className="messages">
@@ -45,7 +67,14 @@ class MessageList extends Component {
             </div>
           )
         }
+        </div>
+        <form>
+          <div className="nextMessage">
+            <input className="theMessage" type="text" name="msg" value={this.state.theMessage}
+              onClick={e => this.clearText(e)} onChange={e => this.saveTheMessage(e)}/>
+            <button className="sendButton" type="submit" onClick={e => this.createMessage(e)}>Send</button>
           </div>
+        </form>
       </section>
     );
   }

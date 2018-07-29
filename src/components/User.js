@@ -7,21 +7,16 @@ class User extends Component {
       messages: [],
       creatingNewUsername: false
     };
-    const newUsername = '';
+    const username = 'Guest';
   }
 
   componentDidMount() {
     this.props.firebase.auth().onAuthStateChanged( user => {
-      this.props.setUser(user);
+      if (user)
+        this.props.setUser(user);
+      else
+        this.props.setUser("Guest");
     });
-  }
-
-  displayName() {
-    if (this.newUsername)
-      return this.newUsername;
-    if (this.props.activeUser)
-      return this.props.activeUser.displayName;
-    return "Guest";
   }
 
   setUsername() {
@@ -35,8 +30,8 @@ class User extends Component {
 
   signOut() {
     this.props.firebase.auth().signOut();
-    this.props.setUser('');
-    this.newUsername = undefined;
+    this.username = "Guest";
+    this.props.setUser(this.username);
   }
 
   getNewUsernamePopupClass() {
@@ -51,26 +46,28 @@ class User extends Component {
   }
 
   saveNewUsername(e) {
-    this.newUsername = e.target.value;
+    this.username = e.target.value;
   }
 
   changeUsername(e) {
     e.preventDefault();
     this.setState({ creatingNewUsername: false });
+    this.props.setUser(this.username);
   }
 
   render() {
     return (
       <section className="authentication">
-        <div className="user" onClick={() => this.setUsername()}>{this.displayName()}</div>
+        <div className="user" onClick={() => this.setUsername()}>{this.props.activeUser}</div>
         <button type="button" onClick={() => this.signIn()}>Sign In</button>
         <button type="button" onClick={() => this.signOut()}>Sign Out</button>
         <div className={this.getNewUsernamePopupClass()}>
           <div className="popup-title">Set a username</div>
           <form>
             <div className="popup-subtitle">This name will appear when you send messages</div>
-            <input className="popupInput" type="text" name="username" onClick={e => this.clearText(e)} onChange={e => this.saveNewUsername(e)}/><br />
-            <input className="createButton" type="submit" value="Set username" onClick={e => this.changeUsername(e)}/>
+            <input className="popupInput" type="text" name="username"
+              onClick={e => this.clearText(e)} onChange={e => this.saveNewUsername(e)}/><br />
+            <button className="createButton" type="submit" onClick={e => this.changeUsername(e)}>Set Username</button>
           </form>
         </div>
       </section>
