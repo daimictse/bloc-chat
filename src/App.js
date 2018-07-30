@@ -23,7 +23,7 @@ class App extends Component {
     super(props);
     this.state = {
       activeRoom: '',
-      activeUser: ''
+      activeUser: '',
     };
   }
 
@@ -32,22 +32,34 @@ class App extends Component {
   }
 
   setUser = user => {
-    this.setState({ activeUser: user });
+    console.log("APP", user);
+    if (user)
+      this.setState({ activeUser: user.displayName });
+    else {
+      this.setState({ activeUser: 'Guest' });
+    }
+  }
+
+  deleteRoom = room => {
+    this.refs.room.deleteRoom(room.key);
   }
 
   render() {
     return (
       <div className="App">
           <RoomList
+            ref="room"
             firebase={firebase}
             activeRoom={this.state.activeRoom}
             onRoomChange={this.onRoomChange}
+            deleteRoom={this.state.deleteRoom}
           />
           <MessageList
             firebase={firebase}
             activeRoom={this.state.activeRoom}
             onRoomChange={this.onRoomChange}
             activeUser={this.state.activeUser}
+            deleteRoom={this.deleteRoom}
           />
           <User
             firebase={firebase}

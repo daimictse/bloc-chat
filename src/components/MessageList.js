@@ -5,7 +5,7 @@ class MessageList extends Component {
     super(props);
     this.state = {
       messages: [],
-      theMessage: 'hello'
+      theMessage: 'Write your message here'
     };
     this.messagesRef = this.props.firebase.database().ref('messages');
   }
@@ -27,6 +27,11 @@ class MessageList extends Component {
     hr = hr === 0 ? 12 : hr;
     var m = "0" + dt.getMinutes();
     return hr + ':' + m.substr(-2) + " " + apm;
+  }
+
+  getDeleteTrashClass() {
+    if (this.props.activeRoom)
+     return "ion-md-trash custom-icon";
   }
 
   clearText(e) {
@@ -53,7 +58,9 @@ class MessageList extends Component {
   render() {
     return (
       <section className="messages">
-        <div className='room-title'>{this.props.activeRoom.name}</div>
+        <div className='room-title'>{this.props.activeRoom.name}
+          <span className={this.getDeleteTrashClass()} onClick={() => this.props.deleteRoom(this.props.activeRoom)}></span>
+        </div>
         <div className="conversation">
         {
           this.state.messages.filter( (message, index ) =>

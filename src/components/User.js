@@ -7,15 +7,12 @@ class User extends Component {
       messages: [],
       creatingNewUsername: false
     };
-    const username = 'Guest';
+    const displayName = 'Guest';
   }
 
   componentDidMount() {
     this.props.firebase.auth().onAuthStateChanged( user => {
-      if (user)
         this.props.setUser(user);
-      else
-        this.props.setUser("Guest");
     });
   }
 
@@ -30,8 +27,8 @@ class User extends Component {
 
   signOut() {
     this.props.firebase.auth().signOut();
-    this.username = "Guest";
-    this.props.setUser(this.username);
+    this.displayName = "Guest";
+    this.props.setUser(null);
   }
 
   getNewUsernamePopupClass() {
@@ -46,13 +43,14 @@ class User extends Component {
   }
 
   saveNewUsername(e) {
-    this.username = e.target.value;
+    this.displayName = e.target.value;
   }
 
   changeUsername(e) {
+console.log("changeusername");
     e.preventDefault();
     this.setState({ creatingNewUsername: false });
-    this.props.setUser(this.username);
+    this.props.setUser(this);
   }
 
   render() {

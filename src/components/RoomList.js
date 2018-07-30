@@ -67,6 +67,12 @@ class RoomList extends Component {
     this.setState({ creatingNewRoom: false });
   }
 
+  deleteRoom() {
+    this.roomsRef.child(this.props.activeRoom.key).remove();
+    this.setState({ rooms: this.state.rooms.filter( room => room.key !== this.props.activeRoom.key) });
+    this.props.onRoomChange('');
+  }
+
   render() {
     return (
       <aside className={this.getBlocChatClass()}>
