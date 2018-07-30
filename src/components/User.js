@@ -47,7 +47,6 @@ class User extends Component {
   }
 
   changeUsername(e) {
-console.log("changeusername");
     e.preventDefault();
     this.setState({ creatingNewUsername: false });
     this.props.setUser(this);

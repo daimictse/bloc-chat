@@ -32,7 +32,6 @@ class App extends Component {
   }
 
   setUser = user => {
-    console.log("APP", user);
     if (user)
       this.setState({ activeUser: user.displayName });
     else {

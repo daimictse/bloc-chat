@@ -45,7 +45,6 @@ class MessageList extends Component {
   createMessage(e) {
     e.preventDefault();
     if (this.props.activeRoom) {
-      console.log(this.props.activeUser, this.state.theMessage, this.props.firebase.database.ServerValue.TIMESTAMP, this.props.activeRoom.key);
       this.messagesRef.push({
         username: this.props.activeUser,
         content: this.state.theMessage,
