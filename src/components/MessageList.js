@@ -52,12 +52,14 @@ class MessageList extends Component {
         roomId: this.props.activeRoom.key
       });
     }
+    this.setState({ theMessage: "Write your message here" });
   }
 
   render() {
     return (
       <section className="messages">
-        <div className='room-title'>{this.props.activeRoom.name}
+        <div className='room-header'>
+          <span className='room-title' onClick={() => this.props.changeRoomName(this.props.activeRoom)}>{this.props.activeRoom.name}</span>
           <span className={this.getDeleteTrashClass()} onClick={() => this.props.deleteRoom(this.props.activeRoom)}></span>
         </div>
         <div className="conversation">

@@ -67,10 +67,30 @@ class RoomList extends Component {
     this.setState({ creatingNewRoom: false });
   }
 
-  deleteRoom() {
-    this.roomsRef.child(this.props.activeRoom.key).remove();
-    this.setState({ rooms: this.state.rooms.filter( room => room.key !== this.props.activeRoom.key) });
-    this.props.onRoomChange('');
+  deleteRoom(roomId) {
+    let del = window.confirm("Are you sure you want to delete this chat room?");
+    if (del === true) {
+      this.roomsRef.child(roomId).remove();
+      this.setState({ rooms: this.state.rooms.filter( room => room.key !== this.props.activeRoom.key) });
+      this.props.onRoomChange('');
+    }
+  }
+
+  changeRoomName(roomId) {
+    let newRoomName = window.prompt("Rename this room to?");
+    if (newRoomName) {
+      // update database
+      this.roomsRef.child(roomId).update({ name: newRoomName });
+
+      // update name on left
+      let roomIndex = this.state.rooms.findIndex( obj => obj.key === roomId );
+      let rooms = this.state.rooms;
+      rooms[roomIndex].name = newRoomName;
+      this.setState({ rooms: rooms });
+
+      // update name on messagse header
+      this.props.onRoomChange(rooms[roomIndex]);
+    }
   }
 
   render() {

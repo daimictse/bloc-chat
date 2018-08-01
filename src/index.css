@@ -104,10 +104,14 @@ input {
   text-align: left;
 }
 
-.room-title {
+.room-header {
   font-size: 1.5em;
   padding-bottom: 25px;
   padding-left: 35%;
+}
+
+.room-title{
+  cursor: pointer;
 }
 
 .conversation {

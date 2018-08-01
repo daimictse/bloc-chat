@@ -43,6 +43,10 @@ class App extends Component {
     this.refs.room.deleteRoom(room.key);
   }
 
+  changeRoomName = room => {
+    this.refs.room.changeRoomName(room.key);
+  }
+
   render() {
     return (
       <div className="App">
@@ -59,6 +63,7 @@ class App extends Component {
             onRoomChange={this.onRoomChange}
             activeUser={this.state.activeUser}
             deleteRoom={this.deleteRoom}
+            changeRoomName={this.changeRoomName}
           />
           <User
             firebase={firebase}
